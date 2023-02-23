@@ -14,4 +14,9 @@ public abstract class BurgerWrapper extends Burger {
     public String getTitle() {
         return burger.getTitle();
     }
+
+    @Override
+    public String toString() {
+        return burger.getTitle();
+    }
 }
