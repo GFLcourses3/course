@@ -6,6 +6,9 @@ import com.github.serhx4.patterns.factory.KentuckyBurgerFactory;
 import com.github.serhx4.patterns.factory.McDonaldBurgerFactory;
 import com.github.serhx4.patterns.model.Burger;
 import com.github.serhx4.patterns.model.StandardBurger;
+import com.github.serhx4.patterns.proxy.ProductRepository;
+import com.github.serhx4.patterns.proxy.ProductRepositoryImpl;
+import com.github.serhx4.patterns.proxy.ProductRepositoryProxy;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -36,6 +39,10 @@ public class ApplicationContext implements AbstractContext {
         if (McDonaldBurgerFactory.class.isAssignableFrom(tClass)) {
             return createBean(tClass, () -> (T) new McDonaldBurgerFactory());
         }
+        // proxy
+        if (ProductRepository.class.isAssignableFrom(tClass)) {
+            return createBean(tClass, () -> (T) new ProductRepositoryProxy(new ProductRepositoryImpl()));
+        }
 
         // prototypes
         if (KentuckyBurgerBuilder.class.isAssignableFrom(tClass)) {
@@ -45,7 +52,7 @@ public class ApplicationContext implements AbstractContext {
             return (T) new McDonaldBurgerBuilder(createBurger());
         }
 
-        throw new IllegalArgumentException("No such class related to context is present: " + tClass);
+        throw new IllegalArgumentException(String.format("No such class related to context is present: %s", tClass));
     }
 
     private <T> T createBean(Class<T> tClass, Supplier<T> supplier) {
@@ -55,7 +62,7 @@ public class ApplicationContext implements AbstractContext {
             iocContainer.put(tClass, bean);
             return bean;
         }
-        return (T)object;
+        return (T) object;
     }
 
     private Burger createBurger() {
