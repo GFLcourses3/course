@@ -1,6 +1,6 @@
 package com.github.serhx4.patterns.proxy;
 
-import com.github.serhx4.patterns.model.Guest;
+import com.github.serhx4.patterns.di.ApplicationContext;
 import com.github.serhx4.patterns.model.Product;
 import com.github.serhx4.patterns.model.User;
 
@@ -12,13 +12,11 @@ import static com.github.serhx4.patterns.model.User.Role.ADMIN;
 
 public class ProductRepositoryProxy implements ProductRepository {
 
-    private static final User DUMMY_USER = new Guest();
-
     private final ProductRepository productRepository;
     private final Map<Integer, Product> productCache;
 
 
-    public ProductRepositoryProxy(ProductRepositoryImpl productRepository) {
+    public ProductRepositoryProxy(ProductRepository productRepository) {
         this.productRepository = productRepository;
         productCache = new WeakHashMap<>();
     }
@@ -51,6 +49,6 @@ public class ProductRepositoryProxy implements ProductRepository {
     }
 
     private User getUserFromContext() {
-        return DUMMY_USER;
+        return ApplicationContext.getContext().create(User.class);
     }
 }

@@ -5,7 +5,9 @@ import com.github.serhx4.patterns.builder.McDonaldBurgerBuilder;
 import com.github.serhx4.patterns.factory.KentuckyBurgerFactory;
 import com.github.serhx4.patterns.factory.McDonaldBurgerFactory;
 import com.github.serhx4.patterns.model.Burger;
+import com.github.serhx4.patterns.model.Guest;
 import com.github.serhx4.patterns.model.StandardBurger;
+import com.github.serhx4.patterns.model.User;
 import com.github.serhx4.patterns.proxy.ProductRepository;
 import com.github.serhx4.patterns.proxy.ProductRepositoryImpl;
 import com.github.serhx4.patterns.proxy.ProductRepositoryProxy;
@@ -38,6 +40,9 @@ public class ApplicationContext implements AbstractContext {
         }
         if (McDonaldBurgerFactory.class.isAssignableFrom(tClass)) {
             return createBean(tClass, () -> (T) new McDonaldBurgerFactory());
+        }
+        if (User.class.isAssignableFrom(tClass)) {
+            return createBean(tClass, () -> (T) new Guest());
         }
         // proxy
         if (ProductRepository.class.isAssignableFrom(tClass)) {
