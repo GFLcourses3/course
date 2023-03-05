@@ -1,4 +1,4 @@
-package patterns.dto_patterns.model;
+package patterns.dto.model;
 
 public class User {
     private Integer id;

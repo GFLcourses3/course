@@ -1,9 +1,9 @@
-package patterns.dto_patterns;
+package patterns.dto;
 
-import patterns.dto_patterns.dto.UserDTO;
-import patterns.dto_patterns.model.User;
+import patterns.dto.dto.UserDTO;
+import patterns.dto.model.User;
 
-import static patterns.dto_patterns.utils.UserDTOMapper.convert;
+import static patterns.dto.utils.UserDTOMapper.convert;
 
 public class Main {
     public static void main(String[] args) {

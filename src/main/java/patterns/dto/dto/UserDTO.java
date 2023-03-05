@@ -1,6 +1,6 @@
-package patterns.dto_patterns.dto;
+package patterns.dto.dto;
 
-import patterns.dto_patterns.model.User;
+import patterns.dto.model.User;
 
 public class UserDTO {
     protected Integer id;
