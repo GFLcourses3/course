@@ -1,4 +1,4 @@
-package Facade;
+package facade;
 
 public class Worker {
     public void doJob(Tracker tracker){

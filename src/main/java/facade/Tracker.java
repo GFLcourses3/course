@@ -1,4 +1,4 @@
-package Facade;
+package facade;
 
 public class Tracker {
     private boolean activeProcess;

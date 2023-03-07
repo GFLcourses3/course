@@ -1,4 +1,4 @@
-package Singleton;
+package singleton;
 
 import java.util.Objects;
 

@@ -1,4 +1,4 @@
-package Facade;
+package facade;
 
 public class Facade {
     Worker worker = new Worker();
